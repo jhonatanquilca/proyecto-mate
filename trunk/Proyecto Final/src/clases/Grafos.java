@@ -27,31 +27,43 @@ public class Grafos {
     }
 
     public void tirasValidas(String tira) {
-        for (int iTira = 0; iTira < matriz.length; iTira++) {
-            for (int iEnt = 0; iEnt < entrada.length; iEnt++) {
+        if (entradasValidas(String.valueOf(tira.charAt(0))) == null) {
+            System.out.println("tira no valida");
+        } else {
+            for (int iTira = 0; iTira < tira.length(); iTira++) {
+                for (int iEnt = 0; iEnt < entrada.length; iEnt++) {
+                                        
+                }
             }
-
         }
+
+
+    }
+
+    public boolean caminoExiste(String estado, String puntero) {
+        return (matriz[getPoscicionEstados(estado)][getPoscicionLenguage(puntero)] != "");
+
 
     }
 
     public String[] entradasValidas(String caracterInicial) {
         String entradas = "";
         for (int i = 0; i < entrada.length; i++) {
-
-            if (caracterInicial.equals(entrada[i])) {
-                if (i == entrada.length) {
-                    entradas += entrada[i];
-                } else {
-                    entradas += entrada[i] + ",";
+            if (matriz[i][getPoscicionLenguage(caracterInicial)] != "") {
+                String[] tmp = matriz[i][getPoscicionLenguage(caracterInicial)].split(",");
+                for (int j = 0; j < tmp.length; j++) {
+//                    System.out.println(tmp[j]);
+//                    System.out.println(entrada[j]);
+                    if (i == entrada.length) {
+                        entradas += entrada[i];
+                    } else {
+                        entradas += entrada[i] + ",";
+                    }
                 }
-
             }
-
         }
-
-        return entradas.split(",");
-
+//        System.out.println(entradas);
+        return entradas.equals("") ? null : entradas.split(",");
     }
 
     public int getPoscicionEstados(String caracter) {
@@ -77,7 +89,7 @@ public class Grafos {
     }
 
     public int getPoscicionEntradas(String caracter) {
-       int pos = 0;
+        int pos = 0;
         for (int i = 0; i < entrada.length; i++) {
             if (caracter.equals(entrada[i])) {
                 pos = i;
@@ -88,7 +100,7 @@ public class Grafos {
     }
 
     public int getPoscicionSalidas(String caracter) {
-      int pos = 0;
+        int pos = 0;
         for (int i = 0; i < salida.length; i++) {
             if (caracter.equals(salida[i])) {
                 pos = i;
@@ -117,6 +129,7 @@ public class Grafos {
         Grafos g = new Grafos(matriz, entrada, salida, lenguje, estados);
 
 
-        g.verVector(g.entradasValidas("0"));
+//        g.verVector(g.entradasValidas("/"));
+        g.tirasValidas("1");
     }
 }
