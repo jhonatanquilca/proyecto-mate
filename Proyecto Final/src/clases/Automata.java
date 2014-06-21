@@ -10,7 +10,7 @@ import sun.print.resources.serviceui;
  *
  * @author Flor-PC
  */
-public class Grafos {
+public class Automata {
 
     public String[][] matriz;
     public String[] entrada;
@@ -18,7 +18,7 @@ public class Grafos {
     public String[] lenguaje;
     public String[] estados;
 
-    public Grafos(String[][] matriz, String[] entrada, String[] salida, String[] lenguaje, String[] estados) {
+    public Automata(String[][] matriz, String[] entrada, String[] salida, String[] lenguaje, String[] estados) {
         this.matriz = matriz;
         this.entrada = entrada;
         this.salida = salida;
@@ -26,45 +26,11 @@ public class Grafos {
         this.estados = estados;
     }
 
-    public void tirasValidas(String tira) {
-        if (entradasValidas(String.valueOf(tira.charAt(0))) == null) {
-            System.out.println("tira no valida");
-        } else {
-            for (int iTira = 0; iTira < tira.length(); iTira++) {
-                for (int iEnt = 0; iEnt < entrada.length; iEnt++) {
-                                        
-                }
-            }
-        }
+    
 
+   
 
-    }
-
-    public boolean caminoExiste(String estado, String puntero) {
-        return (matriz[getPoscicionEstados(estado)][getPoscicionLenguage(puntero)] != "");
-
-
-    }
-
-    public String[] entradasValidas(String caracterInicial) {
-        String entradas = "";
-        for (int i = 0; i < entrada.length; i++) {
-            if (matriz[i][getPoscicionLenguage(caracterInicial)] != "") {
-                String[] tmp = matriz[i][getPoscicionLenguage(caracterInicial)].split(",");
-                for (int j = 0; j < tmp.length; j++) {
-//                    System.out.println(tmp[j]);
-//                    System.out.println(entrada[j]);
-                    if (i == entrada.length) {
-                        entradas += entrada[i];
-                    } else {
-                        entradas += entrada[i] + ",";
-                    }
-                }
-            }
-        }
-//        System.out.println(entradas);
-        return entradas.equals("") ? null : entradas.split(",");
-    }
+   
 
     public int getPoscicionEstados(String caracter) {
         int pos = 0;
@@ -126,7 +92,7 @@ public class Grafos {
         String[] salida = new String[]{"D", "E"};
         String[][] matriz = new String[][]{{"B", "C", ""}, {"B,E", "D", ""}, {"C,D", "", "B"}, {"", "E", ""}, {"", "", ""}};
 
-        Grafos g = new Grafos(matriz, entrada, salida, lenguje, estados);
+        Automata g = new Automata(matriz, entrada, salida, lenguje, estados);
 
 
 //        g.verVector(g.entradasValidas("/"));
