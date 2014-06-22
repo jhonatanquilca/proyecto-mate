@@ -239,7 +239,7 @@ public class Automata {
 
         Automata g = new Automata(matriz, entrada, salida, lenguje, estados);
 //        g.verVector(g.entradasValidas('0'));
-        g.iniciarTira("000001111");
+        g.iniciarTira("000001110");
 //        g.validarTira(ini);
 //        System.out.println(g.validarTira2("A", "00011").replace("->", "").replace("(", "").replace(")", ""));
 //        System.out.println(g.entradasValidas('/'));
