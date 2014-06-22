@@ -107,6 +107,11 @@ public class frmVista extends javax.swing.JFrame {
         jLabel5.setText("F=");
 
         btnMatriz.setText("MATRIZ DE TRANSICION");
+        btnMatriz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatrizActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,6 +185,10 @@ public class frmVista extends javax.swing.JFrame {
     private void txtTIRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTIRAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTIRAActionPerformed
+
+    private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMatrizActionPerformed
 
     /**
      * @param args the command line arguments
