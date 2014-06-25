@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
 import javax.swing.JOptionPane;
 import sun.print.resources.serviceui;
 
-/**
- *
- * @author Flor-PC
- */
 public class Automata {
 
     public String[][] matriz;
