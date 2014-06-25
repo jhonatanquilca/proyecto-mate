@@ -190,7 +190,7 @@ public class frmVista extends javax.swing.JFrame {
 
     private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "hola");
+        
     }//GEN-LAST:event_btnMatrizActionPerformed
 
     /**
