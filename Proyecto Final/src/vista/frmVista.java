@@ -5,6 +5,7 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,9 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class frmVista extends javax.swing.JFrame {
  
-    /**
-     * Creates new form frmVista
-     */
+       DefaultTableModel dtm;
+    String qfila[];
+    String xcolumna[];
     public frmVista() {
         initComponents();
         
@@ -46,6 +47,8 @@ public class frmVista extends javax.swing.JFrame {
         txtQo = new javax.swing.JTextField();
         txtFinal = new javax.swing.JTextField();
         btnMatriz = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        matrizTranscion = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +118,16 @@ public class frmVista extends javax.swing.JFrame {
             }
         });
 
+        matrizTranscion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "A", "B", "C"
+            }
+        ));
+        jScrollPane3.setViewportView(matrizTranscion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,8 +156,9 @@ public class frmVista extends javax.swing.JFrame {
                             .addComponent(btnMatriz)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtQ, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                .addComponent(txtX)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                .addComponent(txtX))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
@@ -169,6 +183,8 @@ public class frmVista extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(btnMatriz)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -189,8 +205,27 @@ public class frmVista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTIRAActionPerformed
 
     private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed
-        // TODO add your handling code here:
-        
+          String estados = txtQ.getText();
+        String lengu = txtX.getText();
+        if (!estados.equals("") && !estados.equals(null) && !lengu.equals("") && !lengu.equals(null)) {
+       
+            String q = txtQ.getText();
+            String x = txtX.getText();
+            qfila = q.replaceAll(" ", "").split(",");
+            xcolumna = ("," + x.replaceAll(" ", "")).split(",");
+            DefaultTableModel dtm = (DefaultTableModel) matrizTranscion.getModel();
+            dtm.setColumnCount(xcolumna.length + 1);
+            dtm.setNumRows(qfila.length);
+            dtm.setColumnIdentifiers(xcolumna);
+            for (int i = 0; i < qfila.length; i++) {
+                matrizTranscion.setValueAt(qfila[i], i, 0);
+            }
+            matrizTranscion.getColumnModel().getColumn(0).setCellRenderer(matrizTranscion.getTableHeader().getDefaultRenderer());
+        } 
+         else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE HABER CAMPOS VACIOS");
+        }
+     
     }//GEN-LAST:event_btnMatrizActionPerformed
 
     /**
@@ -238,6 +273,8 @@ public class frmVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable matrizTranscion;
     private javax.swing.JTextField txtFinal;
     private javax.swing.JTextArea txtProceso;
     private javax.swing.JTextField txtQ;
