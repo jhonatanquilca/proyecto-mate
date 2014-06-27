@@ -4,6 +4,7 @@
  */
 package vista;
 
+import clases.CaracteresNoExistentes;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,7 @@ public class frmVista extends javax.swing.JFrame {
         initComponents();
         
     }
+    CaracteresNoExistentes noextiste = new CaracteresNoExistentes();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,6 +112,18 @@ public class frmVista extends javax.swing.JFrame {
         jLabel4.setText("Qo=");
 
         jLabel5.setText("F=");
+
+        txtQo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtQoKeyPressed(evt);
+            }
+        });
+
+        txtFinal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFinalKeyPressed(evt);
+            }
+        });
 
         btnMatriz.setText("MATRIZ DE TRANSICION");
         btnMatriz.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +241,22 @@ public class frmVista extends javax.swing.JFrame {
         }
      
     }//GEN-LAST:event_btnMatrizActionPerformed
+
+    private void txtQoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQoKeyPressed
+         String[] u = txtQ.getText().split(",");
+        if (!noextiste.presionTecla(evt, u) && !evt.getKeyText(evt.getKeyCode()).equals("Coma") && !evt.getKeyText(evt.getKeyCode()).equals("Retroceso")) {
+            JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto de estados");
+            txtQo.setText(txtQo.getText().substring(0, txtQo.getText().length() - 1));
+        }
+    }//GEN-LAST:event_txtQoKeyPressed
+
+    private void txtFinalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinalKeyPressed
+       String[] u = txtQ.getText().split(",");
+        if (!noextiste.presionTecla(evt, u) && !evt.getKeyText(evt.getKeyCode()).equals("Coma") && !evt.getKeyText(evt.getKeyCode()).equals("Retroceso")) {
+            JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto de estados");
+            txtFinal.setText(txtFinal.getText().substring(0, txtFinal.getText().length() - 1));
+        }
+    }//GEN-LAST:event_txtFinalKeyPressed
 
     /**
      * @param args the command line arguments

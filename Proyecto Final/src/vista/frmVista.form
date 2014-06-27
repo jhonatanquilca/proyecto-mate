@@ -224,8 +224,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtQo">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQoKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFinal">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFinalKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMatriz">
       <Properties>
