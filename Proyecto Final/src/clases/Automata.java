@@ -1,6 +1,7 @@
 package clases;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import sun.print.resources.serviceui;
 
 public class Automata {
@@ -10,6 +11,8 @@ public class Automata {
     public String[] salida;
     public String[] lenguaje;
     public String[] estados;
+    public String tv = "";
+    public String proc = "";
 
     public Automata(String[][] matriz, String[] entrada, String[] salida, String[] lenguaje, String[] estados) {
         this.matriz = matriz;
@@ -55,22 +58,22 @@ public class Automata {
     public String validarTira1(String estado, String x) {
         String resp = "";
         if (x.length() < 1) {
-            System.out.print("(" + estado + "," + x + ")->");
-            resp += "(" + estado + "," + x + ")->";
-
+//            System.out.print("(" + estado + "," + x + ")->");
+            resp = "(" + estado + "," + x + ")->";
         } else {
 
             String estadoSig = getNextEstado(estado, x.charAt(0));
             int ini = x.length() - (x.length() - 1);
             if (estadoSig != "") {
-                System.out.print("(" + estado + "," + x + ")->");
-                resp += validarTira1(estadoSig, x.substring(ini, x.length()));
+//                System.out.print("(" + estado + "," + x + ")->");
+                resp += "(" + estado + "," + x + ")->;" + validarTira1(estadoSig, x.substring(ini, x.length()));
             } else {
-                System.out.print("(" + estado + "," + x + ")->");
+//                System.out.print("(" + estado + "," + x + ")->");
                 resp += "(" + estado + "," + x + ")->";
             }
-
+//            JOptionPane.showMessageDialog(null, resp);
         }
+
         return resp;
     }
 
@@ -109,18 +112,30 @@ public class Automata {
         }
         try {
             validarTira2(entValidas[ver(entB)], x);
-            System.out.println("Tira valida");
-            validarTira1(entValidas[ver(entB)], x);
+//            System.out.println("Tira valida");
+            tv = "Tira valida";
+            proc = validarTira1(entValidas[ver(entB)], x);
 //            System.out.println(validarTira1(entValidas[ver(entB)], x));
         } catch (Exception e) {
-            System.out.println("Tira invalida");
-            validarTira1(entValidas[0], x);
+//            System.out.println("Tira invalida");
+            tv = "Tira invalida";
+            proc = validarTira1(entValidas[0], x);
 //            System.out.println(validarTira1(entValidas[0], x));
         }
 
 //        System.out.println(entB);
 //        verVector(entB);
 //        return ent.equals("") ? null : ent.split("-");
+    }
+
+    public void cadenaPrecedencia(JTextArea x) {
+//        System.out.println("hola "+ proc);
+        String[] cp = proc.split(";");
+//        verVector(cp);
+        x.setText("");
+        for (int i = 0; i < cp.length; i++) {
+            x.setText(x.getText() + "\n" + cp[i]);
+        }
     }
 
     public int ver(boolean[] x) {
@@ -216,8 +231,18 @@ public class Automata {
     public void verVector(String[] vec) {
         for (int i = 0; i < vec.length; i++) {
             System.out.print(vec[i]);
-            System.out.println("\t");
 
+        }
+        System.out.println("");
+    }
+
+    public void vermATRIZ(String[][] vec) {
+        for (int i = 0; i < vec.length; i++) {
+            System.out.print("{");
+            for (int j = 0; j < vec[0].length; j++) {
+                System.out.print(vec[i][j] + ",");
+            }
+            System.out.println("}");
         }
 
     }
@@ -227,11 +252,19 @@ public class Automata {
         String[] estados = new String[]{"A", "B", "C", "D", "E"};
         String[] entrada = new String[]{"A", "C"};
         String[] salida = new String[]{"D", "E"};
-        String[][] matriz = new String[][]{{"B", "C", ""}, {"B", "D", ""}, {"C", "", "B"}, {"", "E", ""}, {"", "", ""}};
+        String[][] matriz = new String[][]{
+            {"B", "C", ""},
+            {"B", "D", ""},
+            {"C", "", "B"},
+            {"", "E", ""},
+            {"", "", ""}
+        };
 
         Automata g = new Automata(matriz, entrada, salida, lenguje, estados);
 //        g.verVector(g.entradasValidas('0'));
         g.iniciarTira("000001110");
+        System.out.println("");
+//        g.vermATRIZ(matriz);
 //        g.validarTira(ini);
 //        System.out.println(g.validarTira2("A", "00011").replace("->", "").replace("(", "").replace(")", ""));
 //        System.out.println(g.entradasValidas('/'));

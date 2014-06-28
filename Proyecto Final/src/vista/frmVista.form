@@ -126,8 +126,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtQ">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtX">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtXKeyReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -188,6 +194,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="RECONOCER"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReconcerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtReconoce">
         </Component>
@@ -226,11 +235,13 @@
     <Component class="javax.swing.JTextField" name="txtQo">
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQoKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQoKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFinal">
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFinalKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFinalKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMatriz">
@@ -261,6 +272,13 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="matrizTranscionComponentAdded"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="matrizTranscionFocusGained"/>
+            <EventHandler event="caretPositionChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="matrizTranscionCaretPositionChanged"/>
+            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="matrizTranscionInputMethodTextChanged"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="matrizTranscionKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

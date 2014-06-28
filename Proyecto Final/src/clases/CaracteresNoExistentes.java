@@ -10,10 +10,14 @@ public class CaracteresNoExistentes {
 
     public boolean presionTecla(KeyEvent evento, String[] x) {
         for (int i = 0; i < x.length; i++) {
-            
-            if (evento.getKeyText(evento.getKeyCode()).equals(x[i].toUpperCase())) {
-                return true;
 
+            if (evento.getKeyText(evento.getKeyCode()).equals(x[i].toUpperCase())) {
+
+                return true;
+            }
+            if (evento.getKeyText(evento.getKeyCode()).equals("Teclado Numérico-" + x[i])) {
+
+                return true;
             }
         }
         return false;
@@ -30,16 +34,15 @@ public class CaracteresNoExistentes {
         }
         return false;
     }
-    
-     public boolean tecla( KeyEvent evento, String[] x )
-   {
-          for (int i = 0; i < x.length; i++) {
 
-            if (( evento.getKeyChar()+"").equals(x[i])) {
+    public boolean tecla(KeyEvent evento, String[] x) {
+        for (int i = 0; i < x.length; i++) {
+
+            if ((evento.getKeyChar() + "").equals(x[i])) {
                 return true;
             }
         }
         return false;
-      
+
     }
 }
