@@ -451,11 +451,7 @@ public class frmVista extends javax.swing.JFrame {
         a.iniciarTira(txtTIRA.getText());
         txtReconoce.setText(a.tv);
         a.cadenaPrecedencia(txtProceso);
-//        a.verVector(a.estados);
-//        a.verVector(a.lenguaje);
-//        a.verVector(a.entrada);
-//        a.verVector(a.salida);
-//        a.vermATRIZ(a.matriz);
+
     }//GEN-LAST:event_btnReconcerActionPerformed
 
     private void matrizTranscionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_matrizTranscionFocusGained
