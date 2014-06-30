@@ -252,7 +252,8 @@ public class Automata {
         String[] estados = new String[]{"A", "B", "C", "D", "E"};
         String[] entrada = new String[]{"A", "C"};
         String[] salida = new String[]{"D", "E"};
-        String[][] matriz = new String[][]{
+        String[][] matriz = new String[][]
+        {
             {"B", "C", ""},
             {"B", "D", ""},
             {"C", "", "B"},
