@@ -206,27 +206,27 @@ public class Automata {
         return pos;
     }
 
-    public int getPoscicionEntradas(String caracter) {
-        int pos = 0;
-        for (int i = 0; i < entrada.length; i++) {
-            if (caracter.equals(entrada[i])) {
-                pos = i;
-            }
+//    public int getPoscicionEntradas(String caracter) {
+//        int pos = 0;
+//        for (int i = 0; i < entrada.length; i++) {
+//            if (caracter.equals(entrada[i])) {
+//                pos = i;
+//            }
+//
+//        }
+//        return pos;
+//    }
 
-        }
-        return pos;
-    }
-
-    public int getPoscicionSalidas(String caracter) {
-        int pos = 0;
-        for (int i = 0; i < salida.length; i++) {
-            if (caracter.equals(salida[i])) {
-                pos = i;
-            }
-
-        }
-        return pos;
-    }
+//    public int getPoscicionSalidas(String caracter) {
+//        int pos = 0;
+//        for (int i = 0; i < salida.length; i++) {
+//            if (caracter.equals(salida[i])) {
+//                pos = i;
+//            }
+//
+//        }
+//        return pos;
+//    }
 
     public void verVector(String[] vec) {
         for (int i = 0; i < vec.length; i++) {
