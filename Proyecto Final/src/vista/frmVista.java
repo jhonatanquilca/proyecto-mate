@@ -93,6 +93,11 @@ public class frmVista extends javax.swing.JFrame {
                 txtTIRAActionPerformed(evt);
             }
         });
+        txtTIRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTIRAKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -469,6 +474,17 @@ public class frmVista extends javax.swing.JFrame {
     private void matrizTranscionComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_matrizTranscionComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_matrizTranscionComponentAdded
+
+    private void txtTIRAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTIRAKeyPressed
+        // TODO add your handling code here:
+        String[] u = txtX.getText().split(",");
+        if (!noextiste.presionTecla(evt, u) && !evt.getKeyText(evt.getKeyCode()).equals("Coma")
+                && !evt.getKeyText(evt.getKeyCode()).equals("Retroceso")
+                && !evt.getKeyText(evt.getKeyCode()).equals("Mayús")) {
+            JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto de estados");
+            txtTIRA.setText(txtTIRA.getText().substring(0, txtTIRA.getText().length() - 1));
+        }
+    }//GEN-LAST:event_txtTIRAKeyPressed
 
     private String[][] matriz() {
 
