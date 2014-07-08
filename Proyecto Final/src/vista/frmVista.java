@@ -452,10 +452,22 @@ public class frmVista extends javax.swing.JFrame {
 
     private void btnReconcerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReconcerActionPerformed
         // TODO add your handling code here:
-        Automata a = new Automata(matriz(), txtQo.getText().split(","), txtFinal.getText().split(","), txtX.getText().split(","), txtQ.getText().split(","));
-        a.iniciarTira(txtTIRA.getText());
-        txtReconoce.setText(a.tv);
-        a.cadenaPrecedencia(txtProceso);
+
+        if (matrizValida()) {
+            if (txtTIRA.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "NO HAY TIRA QUE VALIDAR.\n LLENE EL CAMPO \"Tira a reconocer\" ", "", 1);
+            } else {
+                Automata a = new Automata(matriz(), txtQo.getText().split(","), txtFinal.getText().split(","), txtX.getText().split(","), txtQ.getText().split(","));
+                a.iniciarTira(txtTIRA.getText());
+                txtReconoce.setText(a.tv);
+                a.cadenaPrecedencia(txtProceso);
+            }
+
+
+        } else {
+            JOptionPane.showMessageDialog(this, "FALTA LLENAR VARIOS CAMPOS");
+        }
+
 
     }//GEN-LAST:event_btnReconcerActionPerformed
 
@@ -497,7 +509,7 @@ public class frmVista extends javax.swing.JFrame {
 
                 } else {
 //                    JOptionPane.showMessageDialog(this, String.valueOf(matrizTranscion.getValueAt(i, j + 1)));
-                    b[i][j] = String.valueOf(matrizTranscion.getValueAt(i, j + 1));
+                    b[i][j] = String.valueOf(matrizTranscion.getValueAt(i, j + 1)).toUpperCase();
 
                 }
 
@@ -506,6 +518,38 @@ public class frmVista extends javax.swing.JFrame {
         }
 //        System.out.println(b.length+" "+b[0].length);
         return b;
+    }
+
+    private boolean matrizValida() {
+        int cont1 = 0;
+        int cont2 = 0;
+        for (int i = 0; i < matrizTranscion.getRowCount(); i++) {
+            for (int j = 0; j < matrizTranscion.getColumnCount() - 1; j++) {
+                cont2++;
+
+                if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(null)
+                        || String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals("")
+                        || String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(" ")) {
+                    cont1++;
+                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(String.valueOf(matrizTranscion.getValueAt(i, j + 1)).toUpperCase())) {
+                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros solo admiten MAYUSCULAS.");
+                    return false;
+                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).contains(",")) {
+                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros no admiten mas de un caracter.");
+                    return false;
+                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).length() > 1 && !String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(null)) {
+                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros no admiten mas de un caracter. " );
+                    return false;
+                }
+            }
+        }
+
+        if (cont1 == cont2) {
+            JOptionPane.showMessageDialog(this, "La matriz no es valida:\n Esta vacia.");
+            return false;
+        }
+
+        return true;
     }
 
     /**
