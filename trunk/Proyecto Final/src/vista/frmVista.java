@@ -55,7 +55,7 @@ public class frmVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("PROYECTO DE MATE");
+        jLabel1.setText("PROYECTO DE MATEMATICA DISCRETA");
 
         jLabel2.setText("Q =");
 
@@ -224,13 +224,13 @@ public class frmVista extends javax.swing.JFrame {
                                 .addComponent(txtQ, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                 .addComponent(txtX))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addGap(232, 232, 232)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,10 +294,14 @@ public class frmVista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMatrizActionPerformed
 
     private void txtQoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQoKeyPressed
+        try{
         String[] u = txtQ.getText().split(",");
         if (!noextiste.presionTecla(evt, u) && !evt.getKeyText(evt.getKeyCode()).equals("Coma") && !evt.getKeyText(evt.getKeyCode()).equals("Retroceso")) {
             JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto de estados");
             txtQo.setText(txtQo.getText().substring(0, txtQo.getText().length() - 1));
+        }
+        }catch(Exception e){
+            
         }
     }//GEN-LAST:event_txtQoKeyPressed
 
@@ -465,7 +469,7 @@ public class frmVista extends javax.swing.JFrame {
 
 
         } else {
-            JOptionPane.showMessageDialog(this, "FALTA LLENAR VARIOS CAMPOS");
+//            JOptionPane.showMessageDialog(this, "FALTA LLENAR VARIOS CAMPOS");
         }
 
 
@@ -492,8 +496,9 @@ public class frmVista extends javax.swing.JFrame {
         String[] u = txtX.getText().split(",");
         if (!noextiste.presionTecla(evt, u) && !evt.getKeyText(evt.getKeyCode()).equals("Coma")
                 && !evt.getKeyText(evt.getKeyCode()).equals("Retroceso")
-                && !evt.getKeyText(evt.getKeyCode()).equals("Mayús")) {
-            JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto de estados");
+                && !evt.getKeyText(evt.getKeyCode()).equals("Mayús")
+                && !evt.getKeyText(evt.getKeyCode()).equals("7")) {
+            JOptionPane.showMessageDialog(this, "El elemnto " + evt.getKeyText(evt.getKeyCode()) + " no pertenece al conjunto del lenguaje");
             txtTIRA.setText(txtTIRA.getText().substring(0, txtTIRA.getText().length() - 1));
         }
     }//GEN-LAST:event_txtTIRAKeyPressed
@@ -531,16 +536,23 @@ public class frmVista extends javax.swing.JFrame {
                         || String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals("")
                         || String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(" ")) {
                     cont1++;
-                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(String.valueOf(matrizTranscion.getValueAt(i, j + 1)).toUpperCase())) {
-                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros solo admiten MAYUSCULAS.");
-                    return false;
-                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).contains(",")) {
+                } //                else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(String.valueOf(matrizTranscion.getValueAt(i, j + 1)).toUpperCase())) {
+                //                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros solo admiten MAYUSCULAS.");
+                //                    return false;
+                //                }
+                else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).contains(",")) {
                     JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros no admiten mas de un caracter.");
                     return false;
-                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).length() > 1 && !String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals(null)) {
-                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros no admiten mas de un caracter. " );
+                } else if (String.valueOf(matrizTranscion.getValueAt(i, j + 1)).length() > 1 && !String.valueOf(matrizTranscion.getValueAt(i, j + 1)).equals("null")) {
+                    JOptionPane.showMessageDialog(this, "La matriz no es valida:\n los casilleros no admiten mas de un caracter. ");
                     return false;
                 }
+
+//                if (estadosValidos(String.valueOf(matrizTranscion.getValueAt(i, j + 1)), txtQ.getText().split(","))) {                    
+//                    JOptionPane.showMessageDialog(this, "La matriz de tranicion no coincide con los estados propuestos.");
+//                    JOptionPane.showMessageDialog(this, "La matriz de tranicion no coincide con los estados propuestos.");
+//                    return false;
+//                }
             }
         }
 
@@ -549,6 +561,18 @@ public class frmVista extends javax.swing.JFrame {
             return false;
         }
 
+        return true;
+    }
+
+    public boolean estadosValidos(String a, String[] b) {
+        for (int i = 0; i < b.length; i++) {
+            if (b[i].equals(a)) {
+                System.out.println(b[i]+" "+a);
+                return false;
+                
+            }
+
+        }
         return true;
     }
 
